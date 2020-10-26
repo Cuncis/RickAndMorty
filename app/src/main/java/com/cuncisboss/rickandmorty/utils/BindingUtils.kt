@@ -8,11 +8,13 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.cuncisboss.rickandmorty.R
 
 @BindingAdapter("setImageFromUrl")
-fun ImageView.setImageFromUrl(url: String) {
-    Glide.with(this.context)
-        .load(url)
-        .transform(CircleCrop())
-        .into(this)
+fun ImageView.setImageFromUrl(url: String?) {
+    url?.let {
+        Glide.with(this.context)
+            .load(it)
+            .transform(CircleCrop())
+            .into(this)
+    }
 }
 
 @BindingAdapter("species", "status")

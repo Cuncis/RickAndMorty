@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.cuncisboss.rickandmorty.R
 import com.cuncisboss.rickandmorty.databinding.FragmentCharacterListBinding
 import com.cuncisboss.rickandmorty.ui.base.BaseFragment
@@ -54,6 +56,9 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding, Charact
     override fun getViewModel() = _viewModel
 
     override fun goToDetail(id: Int) {
-        Toast.makeText(requireContext(), "Current ID: $id", Toast.LENGTH_SHORT).show()
+        findNavController().navigate(
+                R.id.action_characterListFragment_to_characterDetailFragment,
+                bundleOf("charId" to id)
+        )
     }
 }
